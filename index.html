@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Single Carport Kitset NZ | Streamline Carports (CRO Mockup)</title>
+<style>
+  :root{
+    --black:#000000;
+    --ink:#111111;
+    --stone:#c9c6b9;
+    --stone-dk:#b3afa0;
+    --orange:#f58220;
+    --line:#e3e1da;
+    --bg:#ffffff;
+    --soft:#f6f5f1;
+    --slate:#5b5b54;
+    --ok:#3a7d44;
+    --shadow:0 2px 14px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Alte Haas Grotesk","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  h1,h2,h3,h4{font-weight:700;letter-spacing:-.2px}
+  img{max-width:100%;display:block}
+
+  .mockbar{background:var(--black);color:var(--stone);font-size:12.5px;text-align:center;padding:7px 12px;letter-spacing:.2px}
+  .mockbar b{color:#fff}
+
+  /* NAV */
+  header.site{position:sticky;top:0;z-index:50;background:var(--black)}
+  .topnav{display:flex;align-items:center;gap:26px;height:72px}
+  .logo img{height:34px;filter:brightness(0) invert(1)}
+  nav.primary{display:flex;gap:22px;margin-left:6px}
+  nav.primary a{font-size:15px;font-weight:400;color:var(--stone)}
+  nav.primary a:hover,nav.primary a.active{color:#fff}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+  .phone{color:var(--stone);font-weight:700;font-size:15px;text-align:right;line-height:1.15}
+  .phone small{display:block;font-weight:400;font-size:11px;opacity:.8}
+  .hamburger{display:none;color:var(--stone);font-size:24px;cursor:pointer}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:3px;font-weight:700;cursor:pointer;font-size:15px;padding:12px 20px;transition:.15s;font-family:inherit}
+  .btn-primary{background:var(--stone);color:var(--black)}
+  .btn-primary:hover{background:var(--stone-dk)}
+  .btn-dark{background:var(--black);color:#fff}
+  .btn-dark:hover{background:#2a2a2a}
+  .btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--soft)}
+  .btn-lg{padding:15px 26px;font-size:16px}
+  .btn-block{width:100%}
+  .btn[disabled]{opacity:.4;cursor:not-allowed}
+
+  .crumbs{font-size:13px;color:var(--slate);padding:16px 0 2px}
+  .crumbs a:hover{color:var(--black)}
+  .crumbs .sep{margin:0 7px;opacity:.5}
+
+  .page-title{font-size:36px;margin:6px 0 2px}
+  .page-sub{color:var(--slate);margin:0 0 22px;font-size:15px}
+
+  .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+
+  /* gallery */
+  .gallery{position:sticky;top:92px}
+  .gmain{border-radius:6px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--soft)}
+  .gmain img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:flex;gap:10px;margin-top:10px}
+  .thumb{flex:1;aspect-ratio:4/3;border-radius:4px;border:2px solid transparent;cursor:pointer;overflow:hidden;background:var(--soft)}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb.sel{border-color:var(--black)}
+  .trust{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+  .chip{background:var(--soft);border:1px solid var(--line);border-radius:3px;padding:7px 12px;font-size:12.5px;font-weight:700;color:var(--slate)}
+  .chip b{color:var(--black)}
+
+  /* CONFIGURATOR */
+  .config{background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);overflow:hidden}
+  .config-head{padding:20px 22px 0}
+  .config-head h2{margin:0 0 16px;font-size:20px}
+  .steps{display:flex;align-items:center;margin:0 0 4px}
+  .step{display:flex;align-items:center}
+  .dot{width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--slate);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:none;border:2px solid var(--line);transition:.2s}
+  .step.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+  .step.current .dot{background:var(--black);border-color:var(--black);color:#fff}
+  .step .lbl{font-size:12.5px;font-weight:700;color:var(--slate);margin-left:8px;white-space:nowrap}
+  .step.current .lbl,.step.done .lbl{color:var(--black)}
+  .bar{flex:1;height:3px;background:var(--line);margin:0 10px;border-radius:3px;position:relative;overflow:hidden}
+  .bar i{position:absolute;inset:0;width:0;background:var(--ok);transition:width .3s}
+  .step.done + .bar i{width:100%}
+  .progress-meta{font-size:12.5px;color:var(--slate);padding:11px 22px 0;font-weight:700}
+  .progress-meta b{color:var(--orange)}
+  .panel-body{padding:18px 22px 22px}
+  .pane{display:none;animation:fade .25s}
+  .pane.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .field-label{font-weight:700;font-size:14px;margin:16px 0 9px;display:flex;justify-content:space-between;align-items:center}
+  .field-label:first-child{margin-top:0}
+  .hint{font-weight:400;font-size:12px;color:var(--slate)}
+  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+  .opt{border:1.5px solid var(--line);border-radius:4px;padding:11px 13px;cursor:pointer;font-weight:700;font-size:14px;transition:.12s;background:#fff;text-align:left;font-family:inherit}
+  .opt small{display:block;font-weight:400;color:var(--slate);font-size:12px;margin-top:2px}
+  .opt:hover{border-color:var(--slate)}
+  .opt.sel{border-color:var(--black);background:var(--soft);box-shadow:inset 0 0 0 1px var(--black)}
+  .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .sw{border:1.5px solid var(--line);border-radius:4px;padding:9px;cursor:pointer;display:flex;align-items:center;gap:9px;font-weight:700;font-size:13px;transition:.12s;background:#fff}
+  .sw:hover{border-color:var(--slate)}
+  .sw.sel{border-color:var(--black);box-shadow:inset 0 0 0 1px var(--black)}
+  .sw .col{width:22px;height:22px;border-radius:3px;border:1px solid rgba(0,0,0,.18);flex:none}
+  .summary{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:14px 16px;margin-top:16px}
+  .summary h4{margin:0 0 9px;font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--slate)}
+  .sumrow{display:flex;justify-content:space-between;font-size:14px;padding:4px 0}
+  .sumrow span:first-child{color:var(--slate)}
+  .sumrow b{color:var(--black)}
+  .sumrow .empty{color:#a9a69b;font-weight:400}
+  .nav-btns{display:flex;gap:10px;margin-top:20px}
+  .nav-btns .btn{flex:1}
+  .savebar{margin-top:13px;text-align:center;font-size:13px}
+  .savebar a{color:var(--black);font-weight:700;cursor:pointer;border-bottom:2px solid var(--orange);padding-bottom:1px}
+  .note{margin-top:10px;font-size:11.5px;color:var(--slate);background:var(--soft);border-left:3px solid var(--orange);border-radius:3px;padding:9px 11px}
+  .note b{color:var(--black)}
+
+  /* ===== COMPACT CONTENT WIDGET (tabs + accordion) ===== */
+  .infoblock{margin-top:30px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+  /* quick-spec strip — scannable, replaces scrolling for the essentials */
+  .quickspec{display:grid;grid-template-columns:repeat(4,1fr);background:var(--black)}
+  .qs{padding:16px 18px;color:#fff;border-right:1px solid #2a2a2a}
+  .qs:last-child{border-right:0}
+  .qs .k{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--stone);margin-bottom:3px}
+  .qs .v{font-size:16px;font-weight:700}
+  /* tabs */
+  .tabs{display:flex;border-bottom:1px solid var(--line);background:var(--soft);overflow-x:auto}
+  .tab{padding:14px 20px;font-weight:700;font-size:14px;color:var(--slate);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;flex:none}
+  .tab:hover{color:var(--black)}
+  .tab.active{color:var(--black);border-bottom-color:var(--orange);background:#fff}
+  .tabpanes{padding:22px 24px}
+  .tabpane{display:none}
+  .tabpane.active{display:block}
+  .tabpane p{margin:0 0 12px;color:#2a2a2a;max-width:74ch}
+  .features{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 26px}
+  .features li{position:relative;padding-left:24px;font-size:14px;color:#2a2a2a;line-height:1.45}
+  .features li::before{content:"";position:absolute;left:0;top:6px;width:12px;height:12px;background:var(--orange);border-radius:2px}
+  .delivery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dcard{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:16px}
+  .dcard h4{margin:0 0 7px;font-size:15px}
+  .dcard p{font-size:13px;color:var(--slate);margin:0}
+  .spectable{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+  .spec-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .spec-row span:first-child{color:var(--slate)}
+  .spec-row b{color:var(--black);text-align:right}
+  .assemble{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .assemble .vid{width:240px;aspect-ratio:16/9;border-radius:5px;overflow:hidden;flex:none;position:relative;background:var(--soft)}
+  .assemble .vid img{width:100%;height:100%;object-fit:cover}
+  .assemble .vid::after{content:"\25B6";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;background:rgba(0,0,0,.25)}
+  .assemble .txt{flex:1;min-width:220px}
+  .assemble .txt p{font-size:14px;color:#2a2a2a;margin:0 0 12px}
+
+  /* lifestyle / social proof strip */
+  .lifestyle{margin-top:30px;border-radius:8px;overflow:hidden;position:relative}
+  .lifestyle img{width:100%;height:320px;object-fit:cover}
+  .lifestyle .cap{position:absolute;left:0;bottom:0;right:0;padding:22px 24px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff}
+  .lifestyle .cap h3{margin:0 0 4px;font-size:22px}
+  .lifestyle .cap p{margin:0;font-size:14px;color:var(--stone)}
+
+  /* related — compact */
+  .related{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+  .rcard{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .rcard .ri{aspect-ratio:16/9;overflow:hidden;background:var(--soft)}
+  .rcard .ri img{width:100%;height:100%;object-fit:cover}
+  .rcard .rb{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  .rcard .rb h4{margin:0;font-size:16px}
+
+  footer.site{background:var(--black);color:var(--stone);margin-top:46px;padding:42px 0 26px}
+  footer .fgrid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between}
+  footer .logo img{height:32px;filter:brightness(0) invert(1)}
+  footer .fcol h5{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin:0 0 12px}
+  footer .fcol a{display:block;color:var(--stone);font-size:14px;padding:4px 0}
+  footer .fcol a:hover{color:#fff}
+  footer .ftcta b{color:#fff;font-size:20px}
+  footer .fbottom{border-top:1px solid #2a2a2a;margin-top:30px;padding-top:18px;font-size:12.5px;opacity:.8}
+
+  /* MODAL */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:30px 16px;overflow:auto}
+  .overlay.open{display:flex}
+  .modal{background:#fff;border-radius:6px;width:100%;max-width:560px;box-shadow:0 24px 70px rgba(0,0,0,.4);overflow:hidden}
+  .modal-head{background:var(--black);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+  .modal-head h3{margin:0;font-size:18px}
+  .modal-head .x{cursor:pointer;font-size:26px;line-height:1;color:var(--stone)}
+  .modal-head .x:hover{color:#fff}
+  .modal-body{padding:22px}
+  .locked{background:var(--soft);border:1.5px solid var(--black);border-radius:5px;padding:14px 16px;margin-bottom:16px}
+  .locked h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--black)}
+  .locked .lk{display:flex;justify-content:space-between;font-size:14px;padding:3px 0}
+  .locked .lk span{color:var(--slate)}
+  .locked .lk b{color:var(--black)}
+  .locked .edit{margin-top:10px;font-size:12.5px;color:var(--black);font-weight:700;cursor:pointer;border-bottom:2px solid var(--orange);display:inline-block;padding-bottom:1px}
+  /* account upsell inside modal */
+  .acct{display:flex;gap:10px;align-items:center;background:#fff7f0;border:1px solid var(--orange);border-radius:5px;padding:11px 13px;margin-bottom:16px;font-size:13px}
+  .acct b{color:var(--black)}
+  .acct a{margin-left:auto;color:var(--black);font-weight:700;white-space:nowrap;border-bottom:2px solid var(--orange)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .frow.one{grid-template-columns:1fr}
+  .inp label{font-size:12.5px;font-weight:700;color:var(--slate);display:block;margin-bottom:4px}
+  .inp input,.inp textarea{width:100%;border:1.5px solid var(--line);border-radius:4px;padding:10px 12px;font-size:14px;font-family:inherit}
+  .inp input:focus,.inp textarea:focus{outline:none;border-color:var(--black)}
+  .modal-foot{font-size:12px;color:var(--slate);margin-top:8px}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:13px 20px;border-radius:5px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:200;max-width:90vw}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:860px){
+    .grid{grid-template-columns:1fr;gap:24px}
+    .gallery{position:static}
+    nav.primary,.phone{display:none}
+    .hamburger{display:inline-flex;margin-left:auto}
+    .opts,.swatches{grid-template-columns:1fr 1fr}
+    .quickspec{grid-template-columns:1fr 1fr}
+    .qs{border-right:0;border-bottom:1px solid #2a2a2a}
+    .features,.delivery,.spectable,.related{grid-template-columns:1fr}
+    .frow{grid-template-columns:1fr}
+    .page-title{font-size:28px}
+    .lifestyle img{height:220px}
+  }
+</style>
+</head>
+<body>
+
+<div class="mockbar">CRO MOCKUP &middot; <b>Streamline Carports</b> &middot; single carport configurator &middot; interactive prototype, not the live site</div>
+
+<!-- NAV -->
+<header class="site">
+  <div class="wrap topnav">
+    <a class="logo" href="#"><img src="assets/logo.png" alt="Streamline Carports"></a>
+    <nav class="primary">
+      <a href="#" class="active">Carports</a>
+      <a href="#">BBQ Shelter</a>
+      <a href="#">Why Streamline</a>
+      <a href="#">Projects</a>
+      <a href="#">FAQs</a>
+      <a href="#">Resellers</a>
+    </nav>
+    <div class="nav-right">
+      <div class="phone">0800 227 767<small>Mon&ndash;Fri 8am&ndash;5pm</small></div>
+      <button class="btn btn-primary" onclick="openModal()">Enquire Now</button>
+      <span class="hamburger">&#9776;</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumbs">
+    <a href="#">Home</a><span class="sep">&rsaquo;</span>
+    <a href="#">Carports</a><span class="sep">&rsaquo;</span>
+    <span>Single Carport</span>
+  </div>
+
+  <h1 class="page-title">Customise Your Single Carport</h1>
+  <p class="page-sub">NZ-made steel kitset &middot; full PS1 engineering supplied &middot; no council consent required up to 40m&sup2;</p>
+
+  <div class="grid">
+    <!-- gallery with real images -->
+    <div class="gallery">
+      <div class="gmain"><img id="gmain" src="assets/hero-render.jpg" alt="Single carport render"></div>
+      <div class="thumbs" id="thumbs">
+        <div class="thumb sel"><img src="assets/hero-render.jpg" alt="Render"></div>
+        <div class="thumb"><img src="assets/lifestyle.jpg" alt="Black carport with SUV"></div>
+        <div class="thumb"><img src="assets/gallery-1.jpg" alt="Grey carport with car"></div>
+        <div class="thumb"><img src="assets/gallery-2.jpg" alt="Carport with motorhome"></div>
+        <div class="thumb"><img src="assets/gallery-3.jpg" alt="Large carport install"></div>
+      </div>
+      <div class="trust">
+        <div class="chip"><b>25-year</b> durability</div>
+        <div class="chip"><b>Full PS1</b> engineering</div>
+        <div class="chip">Made in <b>Palmerston North</b></div>
+        <div class="chip">Freight <b>NZ-wide</b></div>
+      </div>
+    </div>
+
+    <!-- configurator -->
+    <div class="config">
+      <div class="config-head">
+        <h2>Build your carport</h2>
+        <div class="steps" id="steps">
+          <div class="step current" data-step="1"><div class="dot">1</div><div class="lbl">Size</div></div>
+          <div class="bar"><i></i></div>
+          <div class="step" data-step="2"><div class="dot">2</div><div class="lbl">Colour</div></div>
+          <div class="bar"><i></i></div>
+          <div class="step" data-step="3"><div class="dot">3</div><div class="lbl">Enquire</div></div>
+        </div>
+      </div>
+      <div class="progress-meta" id="pmeta">Step 1 of 3 &middot; <b>2 steps remaining</b></div>
+
+      <div class="panel-body">
+        <div class="pane active" data-pane="1">
+          <div class="field-label">Choose your size <span class="hint">Length &times; Width (mm)</span></div>
+          <div class="opts" id="sizeOpts">
+            <button class="opt" data-size="4850 &times; 3000">4850 &times; 3000<small>Compact single</small></button>
+            <button class="opt" data-size="4850 &times; 3600">4850 &times; 3600<small>Single + clearance</small></button>
+            <button class="opt" data-size="5450 &times; 3000">5450 &times; 3000<small>Long single</small></button>
+            <button class="opt" data-size="5450 &times; 3600">5450 &times; 3600<small>Long + wide</small></button>
+            <button class="opt" data-size="6050 &times; 3000">6050 &times; 3000<small>Extra long</small></button>
+            <button class="opt" data-size="6050 &times; 3600">6050 &times; 3600<small>Boat / caravan</small></button>
+            <button class="opt" data-size="7250 &times; 3000">7250 &times; 3000<small>Max length</small></button>
+            <button class="opt" data-size="7250 &times; 3600">7250 &times; 3600<small>Max length + wide</small></button>
+          </div>
+          <div class="nav-btns">
+            <button class="btn btn-primary btn-block" id="next1" disabled onclick="goStep(2)">Next: Choose colour &rarr;</button>
+          </div>
+        </div>
+
+        <div class="pane" data-pane="2">
+          <div class="field-label">Roof &amp; post colour</div>
+          <div class="swatches" id="colourOpts">
+            <div class="sw" data-colour="Black"><span class="col" style="background:#1c1c1c"></span>Black</div>
+            <div class="sw" data-colour="Grey Friars"><span class="col" style="background:#4b4f54"></span>Grey Friars</div>
+            <div class="sw" data-colour="Ironsand"><span class="col" style="background:#39342e"></span>Ironsand</div>
+            <div class="sw" data-colour="Titania"><span class="col" style="background:#d8d3c8"></span>Titania</div>
+            <div class="sw" data-colour="Zinc"><span class="col" style="background:#9aa0a4"></span>Zinc</div>
+          </div>
+          <div class="field-label">Trim colour</div>
+          <div class="swatches" id="trimOpts">
+            <div class="sw" data-trim="Black"><span class="col" style="background:#1c1c1c"></span>Black</div>
+            <div class="sw" data-trim="Grey Friars"><span class="col" style="background:#4b4f54"></span>Grey Friars</div>
+            <div class="sw" data-trim="Ironsand"><span class="col" style="background:#39342e"></span>Ironsand</div>
+            <div class="sw" data-trim="Titania"><span class="col" style="background:#d8d3c8"></span>Titania</div>
+            <div class="sw" data-trim="Zinc"><span class="col" style="background:#9aa0a4"></span>Zinc</div>
+          </div>
+          <div class="nav-btns">
+            <button class="btn btn-outline" onclick="goStep(1)">&larr; Back</button>
+            <button class="btn btn-primary" id="next2" disabled onclick="goStep(3)">Next: Review &amp; enquire &rarr;</button>
+          </div>
+        </div>
+
+        <div class="pane" data-pane="3">
+          <div class="summary">
+            <h4>Your configuration</h4>
+            <div class="sumrow"><span>Size (mm)</span><b id="rSize" class="empty">&mdash;</b></div>
+            <div class="sumrow"><span>Roof &amp; post colour</span><b id="rColour" class="empty">&mdash;</b></div>
+            <div class="sumrow"><span>Trim colour</span><b id="rTrim" class="empty">&mdash;</b></div>
+          </div>
+          <div class="nav-btns">
+            <button class="btn btn-outline" onclick="goStep(2)">&larr; Back</button>
+            <button class="btn btn-dark" onclick="openModal()">Enquire Now &rarr;</button>
+          </div>
+          <div class="savebar">
+            <a href="https://streamlinecarports.kiwi/login/" target="_blank">&#9993; Save &amp; Continue Later</a>
+          </div>
+          <div class="note"><b>Account flow:</b> &ldquo;Save &amp; Continue Later&rdquo; sends the user to <b>streamlinecarports.kiwi/login</b> to create or sign in to an account, where their configuration is stored against their profile and can be reopened or sent to the team. Captures the lead even when they&rsquo;re not ready to enquire.</div>
+        </div>
+
+        <div class="summary" id="liveSummary" style="display:none">
+          <h4>So far</h4>
+          <div class="sumrow"><span>Size</span><b id="lSize" class="empty">Not selected</b></div>
+          <div class="sumrow"><span>Colour</span><b id="lColour" class="empty">Not selected</b></div>
+          <div class="sumrow"><span>Trim</span><b id="lTrim" class="empty">Not selected</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMPACT INFO WIDGET ===== -->
+  <div class="infoblock">
+    <!-- at-a-glance quick spec strip (no scrolling needed for essentials) -->
+    <div class="quickspec">
+      <div class="qs"><div class="k">Model</div><div class="v">SC4830 flat roof</div></div>
+      <div class="qs"><div class="k">Clear height</div><div class="v">2.1m standard</div></div>
+      <div class="qs"><div class="k">Roof span</div><div class="v">Up to 6m unsupported</div></div>
+      <div class="qs"><div class="k">Consent</div><div class="v">None up to 40m&sup2;</div></div>
+    </div>
+    <!-- tabbed detail -->
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-tab="desc">Description</div>
+      <div class="tab" data-tab="feat">Key Features</div>
+      <div class="tab" data-tab="del">Delivery</div>
+      <div class="tab" data-tab="spec">Specifications</div>
+      <div class="tab" data-tab="assy">Assembly</div>
+    </div>
+    <div class="tabpanes">
+      <div class="tabpane active" data-pane="desc">
+        <p>Our single carport SC4830 (4.8m long x 3m wide) is a flat-roof carport built to protect your assets, whether that&rsquo;s your car, boat, ute, trailer or caravan. It isn&rsquo;t limited to those uses: ours have been put to work as outdoor entertainment shelters, verandas, and bike and BBQ shelters too. Every carport is made from strong, sustainable steel and comes with a full, up-to-date engineering PS1, so all weather conditions are catered for and your carport is built to standard.</p>
+        <p>We stock a range of standard sizes and can also custom-make to suit your site. Carports are supplied as a kitset pack and can be freighted NZ-wide, making them a simple DIY project for the home handyman. Invest in a product &lsquo;Built by New Zealand, for New Zealand&rsquo;.</p>
+      </div>
+      <div class="tabpane" data-pane="feat">
+        <ul class="features">
+          <li>Fully customisable: length, width, height and post positions.</li>
+          <li>PurlinDek roofing spans up to 6m without supports, for a clean uncluttered look.</li>
+          <li>Posts supplied at 3m (900mm in ground, 2.1m clear height); longer posts available.</li>
+          <li>100&times;100 fluted roll-formed 0.75g steel posts: strong, sleek, modern.</li>
+          <li>Fix to existing driveways with Top Surface Galv base plates.</li>
+          <li>Add clearlite panels, as often as every 3rd sheet.</li>
+          <li>155mm fascia/gutter on all four sides; gutters fully encircle the roof.</li>
+          <li>Only 3 main components: roofing iron, fascia/gutter and posts.</li>
+          <li>Fully engineered with up-to-date PS1 supplied.</li>
+          <li>25-year durability statement; complete kitset and instruction manual included.</li>
+        </ul>
+      </div>
+      <div class="tabpane" data-pane="del">
+        <div class="delivery">
+          <div class="dcard"><h4>Collect from factory</h4><p>Palmerston North, Mon&ndash;Fri 8am&ndash;5pm. Forklift on-site for easy loading.</p></div>
+          <div class="dcard"><h4>Mainfreight depot</h4><p>Freighted NZ-wide; depots in all main centres. 2 days to collect on arrival. Most cost-effective.</p></div>
+          <div class="dcard"><h4>Home delivery (HIAB)</h4><p>HIAB lifts the pallet onto your property. From $250 +GST per hour from warehouse departure.</p></div>
+        </div>
+      </div>
+      <div class="tabpane" data-pane="spec">
+        <div class="spectable">
+          <div>
+            <div class="spec-row"><span>Model</span><b>SC4830, flat roof</b></div>
+            <div class="spec-row"><span>Size range</span><b>4850&ndash;7250 L &times; 3000&ndash;3600 W</b></div>
+            <div class="spec-row"><span>Posts</span><b>100&times;100 fluted 0.75g, 3m</b></div>
+            <div class="spec-row"><span>Clear height</span><b>2.1m (extendable)</b></div>
+            <div class="spec-row"><span>Roofing</span><b>PurlinDek, up to 6m span</b></div>
+          </div>
+          <div>
+            <div class="spec-row"><span>Fascia / gutter</span><b>155mm, all 4 sides</b></div>
+            <div class="spec-row"><span>Engineering</span><b>Full PS1 supplied</b></div>
+            <div class="spec-row"><span>Consent</span><b>None up to 40m&sup2;</b></div>
+            <div class="spec-row"><span>Durability</span><b>25-year statement</b></div>
+            <div class="spec-row"><span>Pallet</span><b>~4.8 &times; 0.7 &times; 0.3m, 180kg</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="tabpane" data-pane="assy">
+        <div class="assemble">
+          <div class="vid"><img src="assets/gallery-3.jpg" alt="Assembly"></div>
+          <div class="txt">
+            <p>A simple DIY project for the home handyman. Your kitset includes everything needed to install, plus a complete instruction manual.</p>
+            <a class="btn btn-outline" href="https://streamlinecarports.kiwi/wp-content/uploads/2024/01/Streamline-Single-Assembly-Instructions.pdf" target="_blank">Download instructions (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- lifestyle / social proof strip -->
+  <div class="lifestyle">
+    <img src="assets/lifestyle.jpg" alt="Streamline single carport installed at a New Zealand home">
+    <div class="cap">
+      <h3>Built for real Kiwi homes</h3>
+      <p>Engineered for high winds and coastal conditions &middot; installed nationwide</p>
+    </div>
+  </div>
+
+  <!-- related -->
+  <div class="related">
+    <div class="rcard"><div class="ri"><img src="assets/gallery-2.jpg" alt="BBQ shelter"></div><div class="rb"><h4>BBQ Shelter</h4><button class="btn btn-primary" onclick="toast('Would navigate to BBQ Shelter')">Customise</button></div></div>
+    <div class="rcard"><div class="ri"><img src="assets/gallery-3.jpg" alt="Double carport"></div><div class="rb"><h4>Carport Double</h4><button class="btn btn-primary" onclick="toast('Would navigate to Carport Double')">Customise</button></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap fgrid">
+    <div class="fcol">
+      <a class="logo" href="#"><img src="assets/logo.png" alt="Streamline Carports"></a>
+      <p class="ftcta" style="margin-top:16px">Want a quote or more info?<br><b>0800 227 767</b></p>
+    </div>
+    <div class="fcol"><h5>Products</h5><a href="#">Carports</a><a href="#">BBQ Shelter</a><a href="#">PurlinDek Roofing</a></div>
+    <div class="fcol"><h5>Company</h5><a href="#">Why Streamline</a><a href="#">Projects</a><a href="#">Sustainability</a><a href="#">Warranty</a></div>
+    <div class="fcol"><h5>Support</h5><a href="#">FAQs</a><a href="#">Find a Reseller</a><a href="#">Become a Reseller</a><a href="#">Contact Us</a></div>
+  </div>
+  <div class="wrap fbottom">Terms &amp; Conditions &middot; Copyright &copy; 2026 Streamline Carports. All rights reserved.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Enquire about your carport</h3>
+      <span class="x" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="locked">
+        <h4>Your selections (included with this enquiry)</h4>
+        <div class="lk"><span>Product</span><b>Single Carport</b></div>
+        <div class="lk"><span>Size (mm)</span><b id="mSize">&mdash;</b></div>
+        <div class="lk"><span>Roof &amp; post colour</span><b id="mColour">&mdash;</b></div>
+        <div class="lk"><span>Trim colour</span><b id="mTrim">&mdash;</b></div>
+        <div class="edit" onclick="closeModal()">&larr; Edit my configuration</div>
+      </div>
+
+      <div class="acct">
+        <span>&#9733; <b>Save this design</b> to your account and pick up where you left off.</span>
+        <a href="https://streamlinecarports.kiwi/login/" target="_blank">Create account</a>
+      </div>
+
+      <div class="frow">
+        <div class="inp"><label>First name</label><input type="text" placeholder="Jane"></div>
+        <div class="inp"><label>Last name</label><input type="text" placeholder="Smith"></div>
+      </div>
+      <div class="frow">
+        <div class="inp"><label>Suburb / town</label><input type="text" placeholder="Palmerston North"></div>
+        <div class="inp"><label>Phone</label><input type="tel" placeholder="021 234 5678"></div>
+      </div>
+      <div class="frow one"><div class="inp"><label>Email</label><input type="email" placeholder="jane@email.co.nz"></div></div>
+      <div class="frow one"><div class="inp"><label>Comments (optional)</label><textarea rows="2" placeholder="Existing slab? Additional height? Clearlites?"></textarea></div></div>
+      <button class="btn btn-dark btn-lg btn-block" onclick="submitEnq()">Send my enquiry</button>
+      <p class="modal-foot">We&rsquo;ll reply within one business day. Your configuration is attached automatically, so there&rsquo;s no need to re-type it.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const state={size:null,colour:null,trim:null,step:1};
+
+  // gallery thumbs
+  document.querySelectorAll('#thumbs .thumb').forEach(t=>{
+    t.onclick=()=>{document.querySelectorAll('#thumbs .thumb').forEach(x=>x.classList.remove('sel'));t.classList.add('sel');document.getElementById('gmain').src=t.querySelector('img').src;};
+  });
+
+  // tabs
+  document.querySelectorAll('#tabs .tab').forEach(t=>{
+    t.onclick=()=>{
+      document.querySelectorAll('#tabs .tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelector('.tabpane[data-pane="'+t.dataset.tab+'"]').classList.add('active');
+    };
+  });
+
+  document.querySelectorAll('#sizeOpts .opt').forEach(b=>{
+    b.onclick=()=>{document.querySelectorAll('#sizeOpts .opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');state.size=b.dataset.size;document.getElementById('next1').disabled=false;sync();};
+  });
+  document.querySelectorAll('#colourOpts .sw').forEach(s=>{
+    s.onclick=()=>{document.querySelectorAll('#colourOpts .sw').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');state.colour=s.dataset.colour;checkStep2();sync();};
+  });
+  document.querySelectorAll('#trimOpts .sw').forEach(s=>{
+    s.onclick=()=>{document.querySelectorAll('#trimOpts .sw').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');state.trim=s.dataset.trim;checkStep2();sync();};
+  });
+  function checkStep2(){document.getElementById('next2').disabled=!(state.colour&&state.trim);}
+
+  function goStep(n){
+    state.step=n;
+    document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',+p.dataset.pane===n));
+    document.querySelectorAll('.step').forEach(s=>{const sn=+s.dataset.step;s.classList.toggle('current',sn===n);s.classList.toggle('done',sn<n);});
+    const remaining=3-n;
+    document.getElementById('pmeta').innerHTML='Step '+n+' of 3 &middot; <b>'+(remaining===0?'final step':remaining+' step'+(remaining>1?'s':'')+' remaining')+'</b>';
+    document.getElementById('liveSummary').style.display=n<3?'block':'none';
+    document.querySelector('.config').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function sync(){
+    set('rSize',state.size);set('rColour',state.colour);set('rTrim',state.trim);
+    set('lSize',state.size,'Not selected');set('lColour',state.colour,'Not selected');set('lTrim',state.trim,'Not selected');
+    document.getElementById('mSize').innerHTML=state.size||'&mdash;';
+    document.getElementById('mColour').textContent=state.colour||'—';
+    document.getElementById('mTrim').textContent=state.trim||'—';
+  }
+  function set(id,val,emptyTxt){const el=document.getElementById(id);if(val){el.innerHTML=val;el.classList.remove('empty');}else{el.innerHTML=emptyTxt||'&mdash;';el.classList.add('empty');}}
+
+  function openModal(){sync();document.getElementById('overlay').classList.add('open');}
+  function closeModal(){document.getElementById('overlay').classList.remove('open');}
+  document.getElementById('overlay').onclick=e=>{if(e.target.id==='overlay')closeModal();};
+
+  function submitEnq(){closeModal();const cfg=[state.size,state.colour,state.trim].filter(Boolean).join(', ').replace(/&times;/g,'x')||'no config selected';toast('Enquiry sent with: '+cfg);}
+
+  let tT;
+  function toast(msg){const t=document.getElementById('toast');t.innerHTML=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),3200);}
+</script>
+</body>
+</html>
